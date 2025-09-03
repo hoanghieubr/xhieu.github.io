@@ -25,11 +25,16 @@
       text-align: center;
     }
 
+    h1 {
+        font-size: 40px;
+        font-weight: 100;
+    }
+
     /* Blinking block cursor */
     .cursor {
       display: inline-block;
-      height: 0.7em;              /* make it visible */
-      width: 0.2em;             /* block width */
+      height: 0.6em;              /* make it visible */
+      width: 0.1em;             /* block width */
       margin-left: 0.2em;
       background: currentColor; /* uses #00ff00 from body */
       vertical-align: -0.1em;   /* align with baseline */
@@ -45,6 +50,14 @@
 
     img { max-width: 100%; height: auto; display: block; margin: 2rem auto 0; }
     p { margin-top: 2rem; }
+
+    /* Footer clock */
+    #datetime {
+      margin-top: 3rem;
+      font-size: 18px;
+      opacity: 0.9;
+    }
+
   </style>
 </head>
 <body>
@@ -52,7 +65,28 @@
     <h1>Hello there, Hieu here<span class="cursor" aria-hidden="true"></span></h1>
     <img src="hieu.jpg" width="500" alt="Hieu">
     <p>xhieu@outlook.com</p>
+    <div id="datetime"></div>
   </main>
+
+  <!--date & time-->
+  <script>
+    function updateDateTime() {
+      const now = new Date();
+      const options = {
+        weekday: "long",
+        year: "numeric",
+        month: "short",
+        day: "2-digit",
+        hour: "2-digit",
+        minute: "2-digit",
+        second: "2-digit"
+      };
+      document.getElementById("datetime").textContent =
+        now.toLocaleString("en-AU", options);
+    }
+
+    setInterval(updateDateTime, 1000);
+    updateDateTime(); // run once on load
+  </script>
 </body>
 </html>
-
